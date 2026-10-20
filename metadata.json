@@ -1,0 +1,6 @@
+{
+  "name": "Malligai Dental Care - Sengottai",
+  "description": "Premium modern dental clinic in Sengottai, Tamil Nadu offering painless dentistry, root canals, braces, implants, and teeth whitening. Recover Your Lovely Smile!",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
