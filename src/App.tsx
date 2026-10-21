@@ -1,96 +1,109 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
-import { ServicesSection } from './components/ServicesSection';
-import { AboutSection } from './components/AboutSection';
-import { DoctorsSection } from './components/DoctorsSection';
-import { WhyChooseUs } from './components/WhyChooseUs';
-import { TimingsSection } from './components/TimingsSection';
-import { ContactSection } from './components/ContactSection';
+import { About } from './components/About';
+import { Doctors } from './components/Doctors';
+import { Treatments } from './components/Treatments';
+import { Technology } from './components/Technology';
+import { Gallery } from './components/Gallery';
+import { AppointmentForm } from './components/AppointmentForm';
+import { LocationContact } from './components/LocationContact';
 import { Footer } from './components/Footer';
-import { AppointmentModal } from './components/AppointmentModal';
-import { ServiceModal } from './components/ServiceModal';
-import { FloatingActions } from './components/FloatingActions';
-import { DentalService, DoctorProfile } from './types';
+import { AiAssistant } from './components/AiAssistant';
+import { QuickMobileBar } from './components/QuickMobileBar';
+import { CinematicIntro } from './components/3d/CinematicIntro';
 
 export default function App() {
-  const [appointmentModalOpen, setAppointmentModalOpen] = useState(false);
-  const [selectedService, setSelectedService] = useState<DentalService | null>(null);
-  const [selectedDoctor, setSelectedDoctor] = useState<DoctorProfile | null>(null);
-  const [detailModalService, setDetailModalService] = useState<DentalService | null>(null);
+  const [showIntro, setShowIntro] = useState(false);
+  const [selectedTreatment, setSelectedTreatment] = useState('General Consultation');
+  const [isAiChatOpen, setIsAiChatOpen] = useState(false);
 
-  const handleOpenAppointmentModal = (service?: DentalService, doctor?: DoctorProfile) => {
-    setSelectedService(service || null);
-    setSelectedDoctor(doctor || null);
-    setAppointmentModalOpen(true);
-  };
+  useEffect(() => {
+    // Check if intro has already been seen in this session
+    const seen = sessionStorage.getItem('mdc_intro_seen');
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (!seen && !prefersReducedMotion) {
+      setShowIntro(true);
+    }
+  }, []);
 
-  const handleExploreServices = () => {
-    const el = document.getElementById('services');
+  const handleScrollToBooking = (treatmentName?: string) => {
+    if (treatmentName) {
+      setSelectedTreatment(treatmentName);
+    }
+    const el = document.getElementById('appointment');
     if (el) {
       el.scrollIntoView({ behavior: 'smooth' });
     }
   };
 
-  const handleViewServiceDetails = (service: DentalService) => {
-    setDetailModalService(service);
+  const handleReplayIntro = () => {
+    sessionStorage.removeItem('mdc_intro_seen');
+    setShowIntro(true);
   };
 
   return (
-    <div className="min-h-screen bg-slate-50 text-slate-900 flex flex-col font-sans antialiased selection:bg-teal-500 selection:text-white">
-      {/* 1. Sticky Navigation */}
-      <Navbar onBookClick={() => handleOpenAppointmentModal()} />
-
-      <main className="flex-1">
-        {/* 2 - 5. Hero Section with 3D Tooth & CTAs */}
-        <Hero
-          onBookClick={() => handleOpenAppointmentModal()}
-          onExploreServices={handleExploreServices}
+    <div className="min-h-screen bg-[#10182D] text-slate-100 flex flex-col font-sans relative selection:bg-[#00BFA5] selection:text-[#10182D]">
+      {/* 3D Cinematic Opening Experience (On First Load or Replay) */}
+      {showIntro && (
+        <CinematicIntro
+          onComplete={() => setShowIntro(false)}
+          forceShow={showIntro}
         />
+      )}
 
-        {/* 6. Dental Services Section */}
-        <ServicesSection
-          onSelectService={handleViewServiceDetails}
-          onBookService={(service) => handleOpenAppointmentModal(service)}
-        />
-
-        {/* 7. About the Clinic Section */}
-        <AboutSection />
-
-        {/* 8. Dentist Profile Cards (Dr. R. Patrajan & Dr. T. Sankari Patrajan) */}
-        <DoctorsSection
-          onBookWithDoctor={(doctor) => handleOpenAppointmentModal(undefined, doctor)}
-        />
-
-        {/* 9. Why Choose Us Section */}
-        <WhyChooseUs />
-
-        {/* 10. Clinic Timings & Schedule */}
-        <TimingsSection onBookClick={() => handleOpenAppointmentModal()} />
-
-        {/* 11. Contact Section with Map & WhatsApp Booking Form */}
-        <ContactSection />
-      </main>
-
-      {/* 12. Professional Footer */}
-      <Footer />
-
-      {/* Floating Action Buttons */}
-      <FloatingActions />
-
-      {/* Interactive Appointment Modal */}
-      <AppointmentModal
-        isOpen={appointmentModalOpen}
-        onClose={() => setAppointmentModalOpen(false)}
-        preselectedService={selectedService}
-        preselectedDoctor={selectedDoctor}
+      {/* Top Header Navigation (Top Bar Contract) */}
+      <Navbar
+        onBookClick={() => handleScrollToBooking()}
+        onAiChatClick={() => setIsAiChatOpen(true)}
       />
 
-      {/* Detailed Service Information Modal */}
-      <ServiceModal
-        service={detailModalService}
-        onClose={() => setDetailModalService(null)}
-        onBookService={(service) => handleOpenAppointmentModal(service)}
+      {/* Main Content Sections */}
+      <main className="flex-1">
+        {/* Hero Section with Interactive 3D Human Tooth Visual */}
+        <Hero
+          onBookClick={() => handleScrollToBooking()}
+          onReplayIntro={handleReplayIntro}
+        />
+
+        {/* About Malligai Dental Care (With Clinic Exterior Photo) */}
+        <About />
+
+        {/* Meet Our Doctors (Dr. R. Patrajan & Dr. T. Sankari Patrajan) */}
+        <Doctors />
+
+        {/* Specialised Dental Treatments (BPS Dentures, Wisdom Tooth, Full Mouth Rehab) */}
+        <Treatments
+          onSelectTreatment={(treatmentName) => handleScrollToBooking(treatmentName)}
+        />
+
+        {/* Modern Dental Technology (Intraoral 3D Scanner & Digital Radiography) */}
+        <Technology />
+
+        {/* Clinic Photo Gallery (All Verified Clinic Photos + Lightbox) */}
+        <Gallery />
+
+        {/* Appointment Enquiry Form & Working Hours */}
+        <AppointmentForm initialTreatment={selectedTreatment} />
+
+        {/* Location & Google Maps Interactive Embed */}
+        <LocationContact />
+      </main>
+
+      {/* Footer */}
+      <Footer
+        onBookClick={() => handleScrollToBooking()}
+        onReplayIntro={handleReplayIntro}
+      />
+
+      {/* AI-Powered Website Enquiry Assistant (Tamil / English) */}
+      <AiAssistant
+        onOpenBooking={() => handleScrollToBooking()}
+      />
+
+      {/* Mobile Sticky Action Bar (<15% Viewport height) */}
+      <QuickMobileBar
+        onBookClick={() => handleScrollToBooking()}
       />
     </div>
   );

@@ -1,44 +1,69 @@
 @import "tailwindcss";
 
 @layer base {
-  html {
-    scroll-behavior: smooth;
-    font-family: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-    color: #1e293b;
-    background-color: #f8fafc;
+  :root {
+    --navy: #10182D;
+    --teal: #008F87;
+    --turquoise: #00BFA5;
+    --pale-blue: #EAF7FA;
+    --white: #FFFFFF;
   }
 
-  h1, h2, h3, h4, .font-heading {
-    font-family: 'Outfit', 'Plus Jakarta Sans', system-ui, sans-serif;
+  body {
+    font-family: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background-color: #10182D;
+    color: #F8FAFC;
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Outfit', 'Plus Jakarta Sans', sans-serif;
+    letter-spacing: -0.02em;
   }
 }
 
-/* Custom subtle scrollbar */
+/* Custom scrollbar for modern sleek aesthetic */
 ::-webkit-scrollbar {
   width: 8px;
+  height: 8px;
 }
+
 ::-webkit-scrollbar-track {
-  background: #f1f5f9;
+  background: #10182D;
 }
+
 ::-webkit-scrollbar-thumb {
-  background: #cbd5e1;
+  background: #008F87;
   border-radius: 4px;
 }
+
 ::-webkit-scrollbar-thumb:hover {
-  background: #94a3b8;
+  background: #00BFA5;
 }
 
-/* Glassmorphism helpers */
+/* Glassmorphic card surfaces with subtle navy tone */
 .glass-panel {
-  background: rgba(255, 255, 255, 0.85);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(226, 232, 240, 0.8);
+  background: rgba(16, 24, 45, 0.85);
+  border: 1px solid rgba(0, 191, 165, 0.15);
 }
 
-.glass-panel-dark {
-  background: rgba(15, 23, 42, 0.85);
+.glass-card {
+  background: rgba(22, 33, 62, 0.7);
+  border: 1px solid rgba(0, 191, 165, 0.18);
   backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(51, 65, 85, 0.5);
+}
+
+.glass-card-hover {
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.glass-card-hover:hover {
+  transform: translateY(-3px);
+  border-color: rgba(0, 191, 165, 0.45);
+  box-shadow: 0 16px 32px -8px rgba(0, 143, 135, 0.2);
+}
+
+/* Radial background glow */
+.radial-teal-glow {
+  background: radial-gradient(circle at 50% 30%, rgba(0, 191, 165, 0.15) 0%, rgba(0, 143, 135, 0.05) 45%, transparent 70%);
 }

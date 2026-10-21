@@ -1,6 +1,7 @@
 {
   "name": "Malligai Dental Care - Sengottai",
-  "description": "Premium modern dental clinic in Sengottai, Tamil Nadu offering painless dentistry, root canals, braces, implants, and teeth whitening. Recover Your Lovely Smile!",
+  "description": "Premium website for Malligai Dental Care in Sengottai, Tamil Nadu. Led by Dr. R. Patrajan and Dr. T. Sankari Patrajan, offering BPS Dentures, Painless Wisdom Tooth Removal, Full Mouth Rehabilitation, Intraoral 3D Scanning, and Digital X-Rays.",
   "requestFramePermissions": [],
   "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
 }
+
