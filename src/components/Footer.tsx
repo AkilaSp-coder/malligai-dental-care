@@ -1,138 +1,148 @@
 import React from 'react';
-import { Phone, MessageCircle, MapPin, Clock, ArrowUp, Sparkles } from 'lucide-react';
+import { CLINIC_INFO, DOCTORS } from '../data/clinicData';
+import { Phone, MapPin, Clock, ShieldCheck, Heart } from 'lucide-react';
 
 interface FooterProps {
-  onReplayIntro?: () => void;
-  onBookClick: () => void;
+  onOpenBooking: () => void;
 }
 
-export const Footer: React.FC<FooterProps> = ({ onReplayIntro, onBookClick }) => {
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
-
+export const Footer: React.FC<FooterProps> = ({ onOpenBooking }) => {
   return (
-    <footer className="bg-[#0b101e] text-slate-400 pt-16 pb-24 lg:pb-12 border-t border-white/5 text-left text-xs">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 pb-12 border-b border-white/5">
-          {/* Col 1: Brand & Overview (4 cols) */}
-          <div className="lg:col-span-4 space-y-4">
-            <div className="flex items-center gap-3">
-              <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-[#008F87] to-[#00BFA5] p-0.5">
-                <div className="w-full h-full bg-[#10182D] rounded-[6px] flex items-center justify-center">
-                  <svg className="w-4 h-4 text-[#00BFA5]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                    <path d="M12 2C8 2 5 5 5 9c0 3.5 1.5 6 3 9.5.7 1.5 1.8 3.5 2.5 3.5s1.8-2 2.5-3.5C14.5 15 16 12.5 16 9c0-4-3-7-4-7z" />
-                    <path d="M9 12c1.5 1 4.5 1 6 0" />
-                  </svg>
-                </div>
+    <footer className="bg-slate-950 text-slate-400 border-t border-slate-800 text-xs sm:text-sm">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
+        
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
+          
+          {/* Brand Info */}
+          <div className="space-y-4">
+            <div className="flex items-center space-x-2.5">
+              <div className="w-9 h-9 rounded-xl bg-slate-900 border border-slate-700 flex items-center justify-center p-1.5 shadow-md">
+                <svg viewBox="0 0 24 24" className="w-full h-full text-white fill-current">
+                  <path d="M12 2C8.5 2 6 4.5 6 8c0 2.2.8 4.2 2 5.5.8.9 1.3 2 1.5 3.2.3 1.8 1.1 4.3 2.5 4.3s2.2-2.5 2.5-4.3c.2-1.2.7-2.3 1.5-3.2 1.2-1.3 2-3.3 2-5.5 0-3.5-2.5-6-6-6zm-2.2 4.5c.4 0 .8.4.8.8 0 .5-.4.9-.8.9-.5 0-.8-.4-.8-.9 0-.4.3-.8.8-.8zm4.4 0c.4 0 .8.4.8.8 0 .5-.4.9-.8.9-.5 0-.8-.4-.8-.9 0-.4.4-.8.8-.8z" />
+                </svg>
               </div>
-              <span className="text-base font-bold text-white tracking-tight">
-                Malligai Dental Care
+              <span className="font-extrabold text-white text-lg tracking-tight">
+                MALLIGAI <span className="text-white font-black">DENTAL</span>
               </span>
             </div>
-
-            <p className="text-slate-400 leading-relaxed max-w-sm">
-              Providing premier dental healthcare, precision BPS dentures, painless wisdom tooth extractions, 
-              and advanced digital intraoral scanning in Sengottai, Tamil Nadu.
+            <p className="text-slate-400 text-xs leading-relaxed">
+              Premier multi-speciality dental healthcare facility committed to gentle patient care, advanced 3D intraoral digital impressions, low-radiation digital radiography, and long-lasting smile transformations.
             </p>
-
-            <p className="text-slate-300 font-medium italic">
-              “Your Smile Deserves the Best Care. Recover Your Lovely Smile!”
-            </p>
-
-            {onReplayIntro && (
-              <div className="pt-2">
-                <button
-                  onClick={onReplayIntro}
-                  className="inline-flex items-center gap-1.5 text-xs text-[#00BFA5] hover:text-white transition-colors cursor-pointer"
-                >
-                  <Sparkles className="w-3.5 h-3.5" />
-                  <span>Replay 3D Cinematic Opening</span>
-                </button>
-              </div>
-            )}
-          </div>
-
-          {/* Col 2: Navigation Links (2 cols) */}
-          <div className="lg:col-span-2 space-y-3">
-            <h4 className="text-sm font-bold text-white uppercase tracking-wider">Quick Links</h4>
-            <ul className="space-y-2">
-              <li>
-                <a href="#about" className="hover:text-[#00BFA5] transition-colors">About Clinic</a>
-              </li>
-              <li>
-                <a href="#doctors" className="hover:text-[#00BFA5] transition-colors">Our Doctors</a>
-              </li>
-              <li>
-                <a href="#treatments" className="hover:text-[#00BFA5] transition-colors">Treatments</a>
-              </li>
-              <li>
-                <a href="#technology" className="hover:text-[#00BFA5] transition-colors">3D Technology</a>
-              </li>
-              <li>
-                <a href="#gallery" className="hover:text-[#00BFA5] transition-colors">Clinic Gallery</a>
-              </li>
-              <li>
-                <a href="#contact" className="hover:text-[#00BFA5] transition-colors">Location & Hours</a>
-              </li>
-            </ul>
-          </div>
-
-          {/* Col 3: Specialised Care (3 cols) */}
-          <div className="lg:col-span-3 space-y-3">
-            <h4 className="text-sm font-bold text-white uppercase tracking-wider">Specialised Treatments</h4>
-            <ul className="space-y-2 text-slate-400">
-              <li>BPS Dentures (Precision Biofunctional)</li>
-              <li>Painless Wisdom Tooth Removal</li>
-              <li>Full Mouth Rehabilitation</li>
-              <li>Digital Intraoral 3D Scanning</li>
-              <li>Low-Dose Digital Dental X-Ray</li>
-              <li>General Consultation & Cleaning</li>
-            </ul>
-          </div>
-
-          {/* Col 4: Verified Contact Info (3 cols) */}
-          <div className="lg:col-span-3 space-y-3">
-            <h4 className="text-sm font-bold text-white uppercase tracking-wider">Contact & Hours</h4>
-            <div className="space-y-2 text-slate-300">
-              <div className="flex items-start gap-2">
-                <MapPin className="w-4 h-4 text-[#00BFA5] shrink-0 mt-0.5" />
-                <span>No. 71-1/27A, Jawaharlal Nehru Road, Opp. Muthusamy Park, Sengottai – 627 809</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <Phone className="w-4 h-4 text-[#008F87] shrink-0" />
-                <a href="tel:9790060801" className="hover:text-white transition-colors font-semibold">97900 60801</a>
-              </div>
-              <div className="flex items-start gap-2 pt-1 border-t border-white/5">
-                <Clock className="w-4 h-4 text-[#00BFA5] shrink-0 mt-0.5" />
-                <div>
-                  <p>Morning: 10:00 AM – 2:00 PM</p>
-                  <p>Evening: 5:00 PM – 8:30 PM</p>
-                  <p className="text-slate-400">Sunday: Appointment only</p>
-                </div>
-              </div>
+            <div className="flex items-center space-x-2 text-xs text-emerald-400 font-semibold">
+              <ShieldCheck className="w-4 h-4" />
+              <span>Hospital Grade Autoclave Sterilization</span>
             </div>
           </div>
-        </div>
 
-        {/* Bottom Strip */}
-        <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-slate-500 text-[11px]">
-          <div>
-            © {new Date().getFullYear()} Malligai Dental Care, Sengottai. All rights reserved.
+          {/* Doctors On Duty */}
+          <div className="space-y-3">
+            <h4 className="text-white font-bold text-sm uppercase tracking-wider">Chief Dental Surgeons</h4>
+            <div className="space-y-3">
+              {DOCTORS.map((doc) => (
+                <div key={doc.id} className="p-3 bg-slate-900 rounded-xl border border-slate-800">
+                  <p className="font-bold text-white text-xs">{doc.name}, {doc.degree}</p>
+                  <p className="text-[11px] text-slate-400">{doc.college}</p>
+                  <span className="inline-block mt-1 text-[10px] font-semibold text-white bg-slate-800 border border-slate-700 px-2 py-0.5 rounded">
+                    {doc.experience}
+                  </span>
+                </div>
+              ))}
+            </div>
           </div>
 
-          <div className="flex items-center gap-6">
-            <span>Dr. R. Patrajan (BDS) & Dr. T. Sankari Patrajan (BDS)</span>
+          {/* Quick Treatments */}
+          <div className="space-y-3">
+            <h4 className="text-white font-bold text-sm uppercase tracking-wider">Speciality Treatments</h4>
+            <ul className="space-y-2 text-xs">
+              <li>
+                <a href="#services" className="hover:text-white transition-colors flex items-center space-x-1.5">
+                  <span className="text-white">•</span>
+                  <span>Smile Design</span>
+                </a>
+              </li>
+              <li>
+                <a href="#services" className="hover:text-white transition-colors flex items-center space-x-1.5">
+                  <span className="text-white">•</span>
+                  <span>BPS Dentures</span>
+                </a>
+              </li>
+              <li>
+                <a href="#services" className="hover:text-white transition-colors flex items-center space-x-1.5">
+                  <span className="text-white">•</span>
+                  <span>Painless Wisdom Tooth Removal</span>
+                </a>
+              </li>
+              <li>
+                <a href="#services" className="hover:text-white transition-colors flex items-center space-x-1.5">
+                  <span className="text-white">•</span>
+                  <span>Full Mouth Rehabilitation</span>
+                </a>
+              </li>
+              <li>
+                <a href="#transformations" className="hover:text-white transition-colors flex items-center space-x-1.5 text-sky-400">
+                  <span className="text-sky-400">•</span>
+                  <span>Before & After Transformations</span>
+                </a>
+              </li>
+              <li>
+                <a href="#facilities" className="hover:text-sky-300 transition-colors flex items-center space-x-1.5 text-sky-400">
+                  <span className="text-sky-400">•</span>
+                  <span>Intraoral Scanner & Digital X-ray</span>
+                </a>
+              </li>
+              <li>
+                <a href="#services" className="hover:text-white transition-colors flex items-center space-x-1.5">
+                  <span>•</span>
+                  <span>Dental Implants & Root Canals</span>
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          {/* Direct Contact & Hours */}
+          <div className="space-y-3">
+            <h4 className="text-white font-bold text-sm uppercase tracking-wider">Connect & Visit</h4>
+            <div className="space-y-2 text-xs">
+              <a
+                href={CLINIC_INFO.telLink}
+                className="flex items-center space-x-2 text-slate-300 hover:text-white"
+              >
+                <Phone className="w-3.5 h-3.5 text-white flex-shrink-0" />
+                <span>{CLINIC_INFO.phone}</span>
+              </a>
+              <div className="flex items-start space-x-2 text-slate-400">
+                <MapPin className="w-3.5 h-3.5 text-sky-400 flex-shrink-0 mt-0.5" />
+                <span>{CLINIC_INFO.address}</span>
+              </div>
+              <div className="flex items-start space-x-2 text-slate-400">
+                <Clock className="w-3.5 h-3.5 text-slate-400 flex-shrink-0 mt-0.5" />
+                <span>Mon-Sat: 9:30 AM–1:30 PM & 4:30 PM–9:00 PM</span>
+              </div>
+            </div>
+
             <button
-              onClick={scrollToTop}
-              className="p-2 rounded-lg bg-white/5 hover:bg-white/10 text-slate-400 hover:text-white transition-colors cursor-pointer flex items-center gap-1"
-              title="Back to top"
+              onClick={onOpenBooking}
+              className="w-full mt-3 py-2.5 bg-sky-600 hover:bg-sky-500 text-white font-bold text-xs rounded-xl shadow-md transition-all"
             >
-              <ArrowUp className="w-3.5 h-3.5" />
-              <span>Top</span>
+              Book Consultation Now
             </button>
           </div>
+
         </div>
+
+        {/* Bottom Bar */}
+        <div className="mt-12 pt-8 border-t border-slate-800/80 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500 gap-4">
+          <p>&copy; {new Date().getFullYear()} Malligai Dental Care. All rights reserved.</p>
+          <div className="flex items-center space-x-4">
+            <a href="#home" className="hover:text-slate-400 transition-colors">Home</a>
+            <a href="#services" className="hover:text-slate-400 transition-colors">Services</a>
+            <a href="#transformations" className="hover:text-slate-400 transition-colors">Before & After</a>
+            <a href="#facilities" className="hover:text-slate-400 transition-colors">Facilities</a>
+            <a href="#doctors" className="hover:text-slate-400 transition-colors">Doctors</a>
+            <a href="#contact" className="hover:text-slate-400 transition-colors">Contact</a>
+          </div>
+        </div>
+
       </div>
     </footer>
   );

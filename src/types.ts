@@ -1,40 +1,53 @@
-export interface DentalService {
-  id: string;
-  title: string;
-  tagline: string;
-  description: string;
-  longDescription: string;
-  iconName: string;
-  duration: string;
-  recommendedFor: string[];
-  benefits: string[];
-  popular?: boolean;
-}
-
-export interface DoctorProfile {
+export interface Doctor {
   id: string;
   name: string;
-  role: string;
-  qualifications: string;
+  degree: string;
+  college: string;
   experience: string;
-  bio: string;
   specialties: string[];
-  schedule: string;
+  bio: string;
+  avatarColor: string;
 }
 
-export interface ClinicTiming {
-  day: string;
-  morning: string;
-  evening: string;
-  status: 'regular' | 'appointment-only' | 'closed';
+export interface ServiceItem {
+  id: string;
+  title: string;
+  badge?: string;
+  isNewRequested?: boolean;
+  shortDescription: string;
+  features: string[];
+  iconName: string;
+  category: 'Speciality' | 'Preventive' | 'Restorative' | 'Cosmetic';
 }
 
-export interface AppointmentFormData {
-  fullName: string;
-  phoneNumber: string;
-  service: string;
-  doctorPreference: string;
-  preferredDate: string;
-  preferredSlot: string;
-  notes: string;
+export interface FacilityItem {
+  id: string;
+  name: string;
+  badge: string;
+  description: string;
+  keyBenefits: string[];
+  imageSrc: string;
+  imageCaption: string;
+}
+
+export interface ClinicPhoto {
+  id: string;
+  title: string;
+  category: 'Exterior' | 'Operatory' | 'Technology';
+  imageSrc: string;
+  description: string;
+  highlight: string;
+}
+
+export interface TransformationCase {
+  id: string;
+  title: string;
+  category: 'Fracture Repair' | 'Space Closure' | 'Tooth Replacement' | 'Enamel & Occlusion';
+  imageSrc: string;
+  isPair: boolean;
+  pairType?: 'side-by-side' | 'top-bottom' | 'multi-panel';
+  beforeLabel?: string;
+  afterLabel?: string;
+  description: string;
+  clinicalNote: string;
 }
