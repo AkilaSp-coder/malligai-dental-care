@@ -41,10 +41,13 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenBooking }) => {
                 Mon - Sat: 9:30 AM – 1:30 PM & 4:30 PM – 9:00 PM | Sun: 10:00 AM – 1:00 PM
               </span>
             </div>
-            <div className="hidden lg:flex items-center space-x-1.5 flex-shrink-0">
+            <a
+              href="#contact"
+              className="hidden lg:flex items-center space-x-1.5 flex-shrink-0 text-slate-300 hover:text-white transition-colors"
+            >
               <MapPin className="w-3.5 h-3.5 text-sky-400 flex-shrink-0" />
-              <span>Main Road, Tamil Nadu</span>
-            </div>
+              <span>Jawaharlal Nehru Road, Sengottai – 627 809</span>
+            </a>
           </div>
 
           {/* Quick Phone & WhatsApp Link */}
