@@ -10,7 +10,11 @@ export const CLINIC_INFO = {
   whatsappLink: 'https://wa.me/919790060801',
   defaultWhatsappMessage: 'Hello Malligai Dental Care, I would like to enquire about a dental appointment.',
   whatsappEnquiryUrl: 'https://wa.me/919790060801?text=Hello%20Malligai%20Dental%20Care%2C%20I%20would%20like%20to%20enquire%20about%20a%20dental%20appointment.',
-  address: 'Malligai Dental Care, Main Road, Tamil Nadu, India',
+  address: 'No. 71-1/27A, Jawaharlal Nehru Road, Opposite Muthusamy Park, Sengottai – 627 809, Tamil Nadu, India',
+  shortAddress: 'No. 71-1/27A, Jawaharlal Nehru Road, Opposite Muthusamy Park, Sengottai – 627 809',
+  landmark: 'Opposite Muthusamy Park',
+  directionsUrl: "https://www.google.com/maps/dir/?api=1&destination=No.%2071-1%2F27A%2C%20Jawaharlal%20Nehru%20Road%2C%20Opposite%20Muthusamy%20Park%2C%20Sengottai%20627809%2C%20Tamil%20Nadu%2C%20India",
+  mapsEmbedUrl: 'https://maps.google.com/maps?q=No.%2071-1%2F27A%2C%20Jawaharlal%20Nehru%20Road%2C%20Opposite%20Muthusamy%20Park%2C%20Sengottai%20627809%2C%20Tamil%20Nadu%2C%20India&z=17&output=embed',
   email: 'malligaidentalcare@gmail.com',
   workingHours: [
     { days: 'Monday – Saturday', morning: '9:30 AM – 1:30 PM', evening: '4:30 PM – 9:00 PM' },
